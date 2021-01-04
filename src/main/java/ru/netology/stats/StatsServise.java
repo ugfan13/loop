@@ -1,33 +1,99 @@
 package ru.netology.stats;
 
 public class StatsServise {
-    public static void main(String[] args){
-        int[] purchases = {2,17,3,1,20,5,20,6,7};
 
-        StaticCalcSum service = new StaticCalcSum();
-        long Sum = service.calculateSum(purchases);
+    public int calculateSum(int[] purchases) {
+        int sum = 0;
+        for (int purchase : purchases) {
+            sum += purchase;
+        }
+        return sum;
+    }
 
-        StaticCalcAver service1 = new StaticCalcAver();
-        long Aver = service1.calculateAver(purchases);
+    public int calculateAver(int[] purchases) {
+        int leight = purchases.length;
+        int sum = 0;
+        for (int purchase : purchases) {
+            sum += purchase;
+        }
+        return sum / leight;
+    }
 
-        MaxPurchase service2 = new MaxPurchase();
-        long MaxMonth = service2.searchMax(purchases);
+    public int searchMax(int[] purchases) {
+        int currentMax = purchases[0];
+        for (int purchase : purchases) {
+            if (currentMax < purchase) {
+                currentMax = purchase;
 
-        MinPurchase service3 = new MinPurchase();
-        long MinMonth = service3.searchMin(purchases);
+            }
+        }
+        int numberMax = 0;
+        int CurrentNumberMax = 1;
+        for (int purchase : purchases) {
+            numberMax++;
+            if (currentMax == purchase) {
+                CurrentNumberMax = numberMax;
+            }
+        }
+        return CurrentNumberMax;
 
-        PurchaseMinAver service4 = new PurchaseMinAver();
-        long PurchaseUnderAverage = service4.searchPurchaseMinAver(purchases);
+    }
 
-        PurchaseMaxAver service5 = new PurchaseMaxAver();
-        long PurchaseOverAverage = service5.searchPurchaseMaxAver(purchases);
+    public int searchMin(int[] purchases) {
+        long currentMin = purchases[0];
+        for (int purchase : purchases) {
+            if (currentMin > purchase) {
+                currentMin = purchase;
 
-        System.out.println(Sum);
-        System.out.println(Aver);
-        System.out.println(MaxMonth);
-        System.out.println(MinMonth);
-        System.out.println(PurchaseUnderAverage);
-        System.out.println(PurchaseOverAverage);
+            }
+        }
+        int numberMin = 0;
+        int CurrentNumberMin = 1;
+        for (int purchase : purchases) {
+            numberMin++;
+            if (currentMin == purchase) {
+                CurrentNumberMin = numberMin;
+            }
+        }
+        return CurrentNumberMin;
+
+    }
+
+    public int searchPurchaseMaxAver(int[] purchases) {
+        int leight = purchases.length;
+        int sum = 0;
+        for (int purchase : purchases) {
+            sum += purchase;
+        }
+        int AverageValue = sum / leight;
+
+        int findPurchMax = 0;
+        for (int purchase : purchases) {
+            if (purchase > AverageValue) {
+                findPurchMax++;
+            }
+
+        }
+        return findPurchMax;
+
+    }
+
+    public int searchPurchaseMinAver(int[] purchases) {
+        int leight = purchases.length;
+        int sum = 0;
+        for (int purchase : purchases) {
+            sum += purchase;
+        }
+        int AverageValue = sum / leight;
+
+        int findPurchMin = 0;
+        for (int purchase : purchases) {
+            if (purchase < AverageValue) {
+                findPurchMin++;
+            }
+
+        }
+        return findPurchMin;
 
     }
 }
